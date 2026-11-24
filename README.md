@@ -2,9 +2,33 @@
 
 AI-assisted resume screening and candidate-ranking platform that compares PDF resumes with a job description and produces explainable decision-support scores.
 
-![Candidate ranking](screenshots/candidate-ranking.png)
-
 > **Responsible use:** This system provides decision-support signals only. It does not make hiring decisions. Recruiters should review candidate evidence and follow applicable employment and privacy laws.
+
+## Screenshots
+
+### Job description, resume uploads, and analysis inputs
+
+![Application inputs](screenshots/01-inputs.png)
+
+### Extracted job profile and skill preview
+
+![Job profile preview](screenshots/02-preview.png)
+
+### Background resume analysis
+
+![Resume analysis progress](screenshots/03-analysis.png)
+
+### Ranked candidate results
+
+![Candidate ranking](screenshots/04-results.png)
+
+### Explainable score breakdown
+
+![Score details](screenshots/05-score-details.png)
+
+### Candidate skills matrix
+
+![Skills matrix](screenshots/06-skills-matrix.png)
 
 ## Features
 

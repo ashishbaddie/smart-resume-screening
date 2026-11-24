@@ -58,6 +58,10 @@ export const DEMO_RESUME_FILES = [
   new File(["%PDF-1.4 demo"], "11 Avery Clark.pdf", { type: "application/pdf" }),
   new File(["%PDF-1.4 demo"], "03 Jordan Lee.pdf", { type: "application/pdf" }),
   new File(["%PDF-1.4 demo"], "13 Robin Singh.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "05 Morgan Rivera.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "08 Drew Wilson.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "12 Jamie Park.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "14 Emerson Gray.pdf", { type: "application/pdf" }),
 ];
 
 export const DEMO_JOB: Job = {

@@ -219,7 +219,7 @@ export function ResumeCard({
           onClick={onTryDemo}
           className="mt-4 w-full"
         >
-          Try with 3 sample resumes
+          Try with 7 sample resumes and a job description
         </Button>
       )}
       <div className={cn("mt-5", files.length === 0 && "flex-1")}>

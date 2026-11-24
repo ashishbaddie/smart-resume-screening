@@ -211,19 +211,19 @@ export function ResumeCard({
   return (
     <Card className="flex h-full flex-col p-5 sm:p-6">
       <CardHeader icon={Upload} title="Resumes" subtitle={`PDF files, up to ${MAX_RESUMES} at a time.`} />
+      {onTryDemo && (
+        <Button
+          type="button"
+          size="sm"
+          icon={Sparkles}
+          onClick={onTryDemo}
+          className="mt-4 w-full"
+        >
+          Try with 3 sample resumes
+        </Button>
+      )}
       <div className={cn("mt-5", files.length === 0 && "flex-1")}>
         <DropZone multiple grow={files.length === 0} onFiles={add} label="Upload One or More PDF Resumes" title="Drop resumes here" hint={`PDF up to ${MAX_MB} MB each`} />
-        {onTryDemo && (
-          <Button
-            type="button"
-            size="sm"
-            icon={Sparkles}
-            onClick={onTryDemo}
-            className="mt-3 w-full"
-          >
-            Try with 3 sample resumes
-          </Button>
-        )}
         {message && <div className="mt-3"><Alert tone="warn">{message}</Alert></div>}
       </div>
 

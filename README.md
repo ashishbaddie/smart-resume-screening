@@ -142,6 +142,18 @@ npm run dev
 
 The frontend development server is available at `http://localhost:5173` and proxies API requests to port 8000.
 
+## GitHub Pages frontend
+
+The React frontend can be deployed automatically by [.github/workflows/deploy-pages.yml](/Users/ashishpal/smart-resume-screening/.github/workflows/deploy-pages.yml).
+
+1. In GitHub, open **Settings > Pages** and select **GitHub Actions** as the source.
+2. In **Settings > Secrets and variables > Actions > Variables**, add:
+   - `VITE_API_BASE_URL`: the deployed FastAPI base URL, such as `https://your-api.onrender.com`
+3. Push to `main` or run the workflow manually.
+
+The frontend will be published at `https://ashishbaddie.github.io/smart-resume-screening/`.
+The Gemini API key must remain server-side and must not be placed in a `VITE_*` variable.
+
 ## Tests
 
 ### Python

@@ -1,4 +1,14 @@
+/// <reference types="vite/client" />
+
 import type { AnalyzeAccepted, Job, JobProfile } from "./types";
+
+const API_BASE_URL = (
+  (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? ""
+).replace(/\/$/, "");
+
+function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`;
+}
 
 export class ApiError extends Error {
   status: number;
@@ -41,7 +51,7 @@ function jobDescriptionForm(text: string, file: File | null): FormData {
 }
 
 export function previewJobProfile(text: string, file: File | null): Promise<JobProfile> {
-  return request<JobProfile>("/api/job-profile", {
+  return request<JobProfile>(apiUrl("/api/job-profile"), {
     method: "POST",
     body: jobDescriptionForm(text, file),
   });
@@ -50,23 +60,23 @@ export function previewJobProfile(text: string, file: File | null): Promise<JobP
 export function startAnalysis(text: string, jdFile: File | null, resumes: File[]): Promise<AnalyzeAccepted> {
   const form = jobDescriptionForm(text, jdFile);
   resumes.forEach((file) => form.append("resumes", file));
-  return request<AnalyzeAccepted>("/api/analyze", { method: "POST", body: form });
+  return request<AnalyzeAccepted>(apiUrl("/api/analyze"), { method: "POST", body: form });
 }
 
 export function getJob(jobId: string, signal?: AbortSignal): Promise<Job> {
-  return request<Job>(`/api/jobs/${jobId}`, { signal });
+  return request<Job>(apiUrl(`/api/jobs/${jobId}`), { signal });
 }
 
 export async function generateSummary(jobId: string, candidateId: string): Promise<string> {
   const body = await request<{ summary: string }>(
-    `/api/jobs/${jobId}/candidates/${candidateId}/summary`,
+    apiUrl(`/api/jobs/${jobId}/candidates/${candidateId}/summary`),
     { method: "POST" },
   );
   return body.summary;
 }
 
-export const exportUrl = (jobId: string) => `/api/jobs/${jobId}/export.csv`;
+export const exportUrl = (jobId: string) => apiUrl(`/api/jobs/${jobId}/export.csv`);
 
 export async function deleteJob(jobId: string): Promise<void> {
-  await fetch(`/api/jobs/${jobId}`, { method: "DELETE" }).catch(() => undefined);
+  await fetch(apiUrl(`/api/jobs/${jobId}`), { method: "DELETE" }).catch(() => undefined);
 }

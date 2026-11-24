@@ -1,0 +1,21 @@
+# Runs the FastAPI service and the React app together:   docker compose up --build
+# Then open http://localhost:8080  (API docs: http://localhost:8000/docs)
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    env_file: .env            # must contain GEMINI_API_KEY (see .env.example)
+    environment:
+      CORS_ORIGINS: "http://localhost:8080"
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped

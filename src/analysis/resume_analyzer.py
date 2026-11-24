@@ -1,6 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
 
-from src.utils.text_preprocessor import preprocess_text
 from src.matching.semantic_similarity import calculate_semantic_similarity
 from models.analysis_result import AnalysisResult
 from src.analysis.experience_evaluator import evaluate_experience

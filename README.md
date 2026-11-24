@@ -4,9 +4,11 @@
 
 Smart Resume Screening compares job descriptions with one or more PDF resumes, extracts structured evidence, and produces transparent candidate-ranking signals. It is designed to help recruiters review applications faster—not to replace human judgment.
 
+**Live frontend:** [ashishbaddie.github.io/smart-resume-screening](https://ashishbaddie.github.io/smart-resume-screening/)
+
 [![React](https://img.shields.io/badge/frontend-React%2018-61DAFB?logo=react&logoColor=111827)](frontend/)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)](api/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](requirements.txt)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](requirements.txt)
 [![Docker](https://img.shields.io/badge/deployment-Docker%20Compose-2496ED?logo=docker&logoColor=white)](docker-compose.yml)
 
 ## At a glance
@@ -28,17 +30,35 @@ Provide a job description, upload resumes, and start an analysis run.
 
 ![Application inputs](screenshots/01-inputs.png)
 
-### 2. Review ranked candidates
+### 2. Preview the extracted job profile
+
+Review the structured role information before starting resume analysis.
+
+![Job profile preview](screenshots/02-preview.png)
+
+### 3. Track analysis progress
+
+Follow the background analysis as resumes are processed.
+
+![Resume analysis progress](screenshots/03-analysis.png)
+
+### 4. Review ranked candidates
 
 Compare candidates using the overall score, match label, and extracted evidence.
 
 ![Candidate ranking](screenshots/04-results.png)
 
-### 3. Understand every score
+### 5. Understand every score
 
 Open a candidate to inspect the factors behind the recommendation.
 
 ![Explainable score breakdown](screenshots/05-score-details.png)
+
+### 6. Explore the skills matrix
+
+Compare matched, missing, and preferred skills across candidates.
+
+![Candidate skills matrix](screenshots/06-skills-matrix.png)
 
 ## How scoring works
 
@@ -164,7 +184,7 @@ The React frontend can be deployed with [`.github/workflows/deploy-pages.yml`](.
 2. Add the `VITE_API_BASE_URL` repository variable under **Settings → Secrets and variables → Actions → Variables**.
 3. Push to `main` or run the workflow manually.
 
-The frontend is published at `https://ashishbaddie.github.io/smart-resume-screening/`. The FastAPI service must be deployed separately.
+GitHub Pages hosts **only the React frontend**. The FastAPI backend must be deployed separately and connected through `VITE_API_BASE_URL`; the Gemini API key must remain on the backend.
 
 ## Testing
 

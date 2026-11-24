@@ -30,35 +30,17 @@ Provide a job description, upload resumes, and start an analysis run.
 
 ![Application inputs](screenshots/01-inputs.png)
 
-### 2. Preview the extracted job profile
-
-Review the structured role information before starting resume analysis.
-
-![Job profile preview](screenshots/02-preview.png)
-
-### 3. Track analysis progress
-
-Follow the background analysis as resumes are processed.
-
-![Resume analysis progress](screenshots/03-analysis.png)
-
-### 4. Review ranked candidates
+### 2. Review ranked candidates
 
 Compare candidates using the overall score, match label, and extracted evidence.
 
 ![Candidate ranking](screenshots/04-results.png)
 
-### 5. Understand every score
+### 3. Understand every score
 
 Open a candidate to inspect the factors behind the recommendation.
 
 ![Explainable score breakdown](screenshots/05-score-details.png)
-
-### 6. Explore the skills matrix
-
-Compare matched, missing, and preferred skills across candidates.
-
-![Candidate skills matrix](screenshots/06-skills-matrix.png)
 
 ## How scoring works
 

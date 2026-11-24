@@ -10,7 +10,7 @@ import { Alert } from "./components/ui";
 import { useAnalysis } from "./hooks/useAnalysis";
 import { useElapsed, useTheme } from "./hooks/hooks";
 import type { JobProfile } from "./types";
-import { DEMO_MODE } from "./demo";
+import { DEMO_JOB_DESCRIPTION, DEMO_MODE, DEMO_PROFILE, DEMO_RESUME_FILES } from "./demo";
 
 export default function App() {
   const [mode, setMode] = useState<"text" | "pdf">("text");
@@ -52,6 +52,14 @@ export default function App() {
 
   const start = () => analysis.start(mode === "text" ? jdText : "", mode === "pdf" ? jdFile : null, resumes);
 
+  const tryDemo = () => {
+    setMode("text");
+    setJdFile(null);
+    setJdText(DEMO_JOB_DESCRIPTION);
+    setProfile(DEMO_PROFILE);
+    setResumes([...DEMO_RESUME_FILES]);
+  };
+
   return (
     <div className="min-h-screen">
       <Header view={view} theme={theme} onToggleTheme={toggleTheme} onHelp={() => setHelpOpen(true)} onNew={analysis.reset} />
@@ -89,7 +97,11 @@ export default function App() {
                 profile={profile} previewing={previewing} previewError={previewError}
                 canPreview={hasJd} onPreview={preview}
               />
-              <ResumeCard files={resumes} onFiles={setResumes} />
+              <ResumeCard
+                files={resumes}
+                onFiles={setResumes}
+                onTryDemo={DEMO_MODE ? tryDemo : undefined}
+              />
             </div>
 
             <div className="mt-6"><ScoringExplainer /></div>

@@ -31,6 +31,35 @@ export const DEMO_PROFILE: JobProfile = {
   used_skills_fallback: false,
 };
 
+export const DEMO_JOB_DESCRIPTION = `JOB TITLE: Junior Software Engineer (Backend / Full-Stack)
+
+ABOUT THE ROLE
+We are looking for an entry-level Software Engineer to build and maintain reliable web applications and REST APIs. The successful candidate will collaborate with a product team, write tests, and improve application performance.
+
+REQUIRED SKILLS
+- Proficiency in JavaScript or Python, with clear programming fundamentals
+- Experience building REST APIs using Node.js/Express
+- Familiarity with PostgreSQL or another SQL database
+- Knowledge of Git and collaborative workflows
+- Understanding of data structures, algorithms, debugging, and object-oriented programming
+
+PREFERRED SKILLS
+- React or another modern frontend framework
+- Pytest, Jest, or automated testing
+- Docker and CI/CD
+
+EDUCATION
+Bachelor's degree in Computer Science, Software Engineering, or a related field.
+
+MINIMUM EXPERIENCE
+0 years`;
+
+export const DEMO_RESUME_FILES = [
+  new File(["%PDF-1.4 demo"], "11 Avery Clark.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "03 Jordan Lee.pdf", { type: "application/pdf" }),
+  new File(["%PDF-1.4 demo"], "13 Robin Singh.pdf", { type: "application/pdf" }),
+];
+
 export const DEMO_JOB: Job = {
   job_id: "demo",
   status: "done",

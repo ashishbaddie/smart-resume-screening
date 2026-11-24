@@ -181,7 +181,15 @@ export function JobDescriptionCard(p: JdProps) {
 
 // ------------------------------------------------------------------ resumes
 
-export function ResumeCard({ files, onFiles }: { files: File[]; onFiles: (files: File[]) => void }) {
+export function ResumeCard({
+  files,
+  onFiles,
+  onTryDemo,
+}: {
+  files: File[];
+  onFiles: (files: File[]) => void;
+  onTryDemo?: () => void;
+}) {
   const [message, setMessage] = useState<string | null>(null);
 
   const add = (incoming: File[]) => {
@@ -205,6 +213,17 @@ export function ResumeCard({ files, onFiles }: { files: File[]; onFiles: (files:
       <CardHeader icon={Upload} title="Resumes" subtitle={`PDF files, up to ${MAX_RESUMES} at a time.`} />
       <div className={cn("mt-5", files.length === 0 && "flex-1")}>
         <DropZone multiple grow={files.length === 0} onFiles={add} label="Upload One or More PDF Resumes" title="Drop resumes here" hint={`PDF up to ${MAX_MB} MB each`} />
+        {onTryDemo && (
+          <Button
+            type="button"
+            size="sm"
+            icon={Sparkles}
+            onClick={onTryDemo}
+            className="mt-3 w-full"
+          >
+            Try with 3 sample resumes
+          </Button>
+        )}
         {message && <div className="mt-3"><Alert tone="warn">{message}</Alert></div>}
       </div>
 

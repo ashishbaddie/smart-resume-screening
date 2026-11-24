@@ -6,7 +6,7 @@ Smart Resume Screening compares job descriptions with one or more PDF resumes, e
 
 **Live frontend:** [ashishbaddie.github.io/smart-resume-screening](https://ashishbaddie.github.io/smart-resume-screening/)
 
-The GitHub Pages deployment includes a clearly labeled demo fallback with sample candidates. Live PDF analysis requires the separately deployed FastAPI backend.
+The GitHub Pages deployment includes a clearly labeled demo fallback with sample candidates. Recruiters can click **“Try with 3 sample resumes”** to load a sample role, three candidates, and an end-to-end ranking preview in one step. Live PDF analysis requires the separately deployed FastAPI backend.
 
 [![React](https://img.shields.io/badge/frontend-React%2018-61DAFB?logo=react&logoColor=111827)](frontend/)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)](api/)

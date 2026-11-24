@@ -10,6 +10,7 @@ import { Alert } from "./components/ui";
 import { useAnalysis } from "./hooks/useAnalysis";
 import { useElapsed, useTheme } from "./hooks/hooks";
 import type { JobProfile } from "./types";
+import { DEMO_MODE } from "./demo";
 
 export default function App() {
   const [mode, setMode] = useState<"text" | "pdf">("text");
@@ -56,6 +57,11 @@ export default function App() {
       <Header view={view} theme={theme} onToggleTheme={toggleTheme} onHelp={() => setHelpOpen(true)} onNew={analysis.reset} />
 
       <main className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10">
+        {DEMO_MODE && (
+          <div className="mb-5 rounded-xl border border-brand/30 bg-brand-soft px-4 py-3 text-sm text-ink">
+            <strong>Demo mode:</strong> This GitHub Pages preview uses sample rankings. Live PDF analysis requires the separately deployed FastAPI backend.
+          </div>
+        )}
         {view === "running" && <Running completed={analysis.job?.completed ?? 0} total={analysis.total} elapsed={elapsed} />}
 
         {view === "results" && analysis.job && analysis.jobId && (

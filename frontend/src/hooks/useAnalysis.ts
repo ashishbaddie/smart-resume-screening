@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError, deleteJob, getJob, startAnalysis } from "../api";
 import type { Job, SkippedFile } from "../types";
+import { DEMO_JOB, DEMO_MODE } from "../demo";
 
 export type Phase = "idle" | "starting" | "running" | "done" | "failed";
 
@@ -78,6 +79,25 @@ export function useAnalysis() {
       jobId.current = null;
       const myRun = runId.current;
       setState({ ...INITIAL, phase: "starting" });
+      if (DEMO_MODE) {
+        setState({
+          ...INITIAL,
+          phase: "running",
+          total: DEMO_JOB.total,
+          skipped: DEMO_JOB.skipped,
+        });
+        await sleep(900);
+        if (runId.current !== myRun) return;
+        setState({
+          ...INITIAL,
+          phase: "done",
+          job: DEMO_JOB,
+          total: DEMO_JOB.total,
+          skipped: DEMO_JOB.skipped,
+        });
+        jobId.current = DEMO_JOB.job_id;
+        return;
+      }
       try {
         const accepted = await startAnalysis(text, jdFile, resumes);
         if (runId.current !== myRun) return;

@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import type { AnalyzeAccepted, Job, JobProfile } from "./types";
+import { DEMO_MODE, DEMO_JOB, DEMO_PROFILE } from "./demo";
 
 const API_BASE_URL = (
   (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? ""
@@ -51,6 +52,7 @@ function jobDescriptionForm(text: string, file: File | null): FormData {
 }
 
 export function previewJobProfile(text: string, file: File | null): Promise<JobProfile> {
+  if (DEMO_MODE) return Promise.resolve(DEMO_PROFILE);
   return request<JobProfile>(apiUrl("/api/job-profile"), {
     method: "POST",
     body: jobDescriptionForm(text, file),
@@ -58,6 +60,13 @@ export function previewJobProfile(text: string, file: File | null): Promise<JobP
 }
 
 export function startAnalysis(text: string, jdFile: File | null, resumes: File[]): Promise<AnalyzeAccepted> {
+  if (DEMO_MODE) {
+    return Promise.resolve({
+      job_id: DEMO_JOB.job_id,
+      total: DEMO_JOB.total,
+      skipped: [],
+    });
+  }
   const form = jobDescriptionForm(text, jdFile);
   resumes.forEach((file) => form.append("resumes", file));
   return request<AnalyzeAccepted>(apiUrl("/api/analyze"), { method: "POST", body: form });
@@ -68,6 +77,9 @@ export function getJob(jobId: string, signal?: AbortSignal): Promise<Job> {
 }
 
 export async function generateSummary(jobId: string, candidateId: string): Promise<string> {
+  if (DEMO_MODE) {
+    return "This is demonstration data. Connect the deployed FastAPI backend to generate an AI summary from a real resume.";
+  }
   const body = await request<{ summary: string }>(
     apiUrl(`/api/jobs/${jobId}/candidates/${candidateId}/summary`),
     { method: "POST" },
@@ -75,8 +87,10 @@ export async function generateSummary(jobId: string, candidateId: string): Promi
   return body.summary;
 }
 
-export const exportUrl = (jobId: string) => apiUrl(`/api/jobs/${jobId}/export.csv`);
+export const exportUrl = (jobId: string) =>
+  DEMO_MODE ? "#" : apiUrl(`/api/jobs/${jobId}/export.csv`);
 
 export async function deleteJob(jobId: string): Promise<void> {
+  if (DEMO_MODE) return;
   await fetch(apiUrl(`/api/jobs/${jobId}`), { method: "DELETE" }).catch(() => undefined);
 }

@@ -209,4 +209,3 @@ docs/                 API and architecture documentation
 - Scanned, image-only resumes may require OCR.
 - Extracted evidence and model outputs may contain errors.
 - The synthetic bias audit should not be generalized to a legal or demographic audit.
-- The in-memory job store is intended for single-server use.
